@@ -1,25 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>GTA VI Trophy Guide &amp; Tracker — All 55 PS5 Trophies</title>
+<meta name="description" content="Offline GTA VI trophy guide and tracker: all 55 PS5 trophies with cited guides, roadmap, missable flags and saved progress.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="topbar">
+  <div class="brand">
+    <h1>GTA VI <span>Trophy Guide &amp; Tracker</span></h1>
+    <p class="tagline">All 55 PS5 trophies · cited guides · saved progress · works offline</p>
+  </div>
+  <div class="top-actions">
+    <label class="spoiler-toggle" title="Hide story trophy names and descriptions until earned or revealed">
+      <input type="checkbox" id="spoilerToggle" checked>
+      <span>Hide story spoilers</span>
+    </label>
+    <button id="exportBtn" type="button">Export progress</button>
+    <button id="importBtn" type="button">Import progress</button>
+    <input type="file" id="importFile" accept=".json,application/json" hidden>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<section class="progress-wrap" aria-label="Overall progress">
+  <div class="progress-line"><span id="progressText">0 / 55 earned</span><span id="gradeCounts"></span></div>
+  <div class="progress-bar"><div id="progressFill" style="width:0%"></div></div>
+</section>
+
+<section class="audit" id="auditBar" aria-label="Guide audit">
+  <span class="audit-loading">Loading audit…</span>
+</section>
+
+<nav class="tabs" aria-label="Guide sections">
+  <button class="tab active" data-view="tracker" type="button">Tracker</button>
+  <button class="tab" data-view="roadmap" type="button">Roadmap</button>
+  <button class="tab" data-view="checklist" type="button">100% Checklist</button>
+  <button class="tab" data-view="missables" type="button">Missables &amp; At Risk</button>
+  <button class="tab" data-view="sources" type="button">Sources</button>
+  <button class="tab" data-view="disputes" type="button">Disputes</button>
+</nav>
+
+<main>
+  <section id="view-tracker" class="view active">
+    <div class="tracker-grid">
+      <div class="col-list">
+        <div class="filters">
+          <input type="search" id="searchBox" placeholder="Search trophies…" aria-label="Search trophies">
+          <div class="chip-row" id="kindChips">
+            <button class="chip active" data-kind="all" type="button">All 55</button>
+            <button class="chip" data-kind="story" type="button">Story</button>
+            <button class="chip" data-kind="missable" type="button">Missable</button>
+            <button class="chip" data-kind="collectibles" type="button">Collectibles</button>
+            <button class="chip" data-kind="activities" type="button">Activities</button>
+            <button class="chip" data-kind="online" type="button">Online</button>
+          </div>
+          <div class="chip-row" id="gradeChips">
+            <button class="chip active" data-grade="all" type="button">All grades</button>
+            <button class="chip" data-grade="platinum" type="button">Platinum</button>
+            <button class="chip" data-grade="gold" type="button">Gold</button>
+            <button class="chip" data-grade="silver" type="button">Silver</button>
+            <button class="chip" data-grade="bronze" type="button">Bronze</button>
+          </div>
+          <div class="chip-row" id="stateChips">
+            <button class="chip active" data-state="all" type="button">All states</button>
+            <button class="chip" data-state="earned" type="button">Earned</button>
+            <button class="chip" data-state="not-earned" type="button">Not earned</button>
+            <button class="chip" data-state="hidden" type="button">PSN-hidden</button>
+            <button class="chip" data-state="disputed" type="button">Disputed</button>
+            <button class="chip" data-state="unconfirmed" type="button">Unconfirmed</button>
+          </div>
+        </div>
+        <ul class="trophy-list" id="trophyList" aria-label="Trophy list"></ul>
+      </div>
+      <div class="col-detail" id="detailPane" aria-live="polite"></div>
+      <aside class="col-rail" id="railPane"></aside>
+    </div>
+  </section>
+
+  <section id="view-roadmap" class="view"><div class="view-body" id="roadmapBody"></div></section>
+  <section id="view-checklist" class="view"><div class="view-body" id="checklistBody"></div></section>
+  <section id="view-missables" class="view"><div class="view-body" id="missablesBody"></div></section>
+  <section id="view-sources" class="view"><div class="view-body" id="sourcesBody"></div></section>
+  <section id="view-disputes" class="view"><div class="view-body" id="disputesBody"></div></section>
+</main>
+
+<footer class="foot">
+  <p>Unofficial fan guide. Not affiliated with Rockstar Games, Take-Two Interactive, Sony or PlayStation. Trophy names, descriptions and grades are quoted as PlayStation publishes them; all guide text is original to this entry. Sources were read on 21 Nov 2026. Progress is stored only in your browser.</p>
+  <p class="foot-links"><a href="https://make.fun/bounty/gta6-trophy-guide-01">make.fun bounty</a> · <a href="https://github.com/dftaufiq/gta6-trophy-guide">Source on GitHub</a></p>
+</footer>
+
 <script type="module" src="app.js"></script>
 </body>
 </html>
